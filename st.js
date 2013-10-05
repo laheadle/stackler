@@ -131,7 +131,12 @@ function generateSequence(maxStack, numOps) {
 }
 
 // http://caseyjustus.com/finding-the-median-of-an-array-with-javascript
-function median(values) {
+function median(values0) {
+    var values = []
+    // clone
+    for (var i = 0;i < values0.length;i++) {
+        values[i] = values0[i]
+    }
     values.sort( function(a,b) {return a - b;} );
     var half = Math.floor(values.length/2);
     if(values.length % 2)
