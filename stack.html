@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+<style>
+.code { background-color: #f7f7f7 }
+</style>
+<script src="./st.js"></script>
+<title>  Quiz Yourself on Forth Stack Effects  </title>
+</head>
+<body style="margin: 20px 50px">
+
+<h3> Quiz Yourself on Forth Stack Effects </h3>
+
+<p> Given the following definitions </p>
+
+<pre class="code">
+: one 1 ;
+: two 2 ;
+: three 3 ;
+</pre>
+
+<p> What is the stack result of the following sequence of Forth words? </p>
+<p id="seq" class="code"></p>
+<button id="show" style="background-color: #e7e7e7">Show Stack Result</button>
+<p id="fin" style="display:none"></p>
+<p id="timing" style="display:none">(Elapsed time: <span id="secs"></span> seconds)</p>
+
+<h3> Reload the page for another quiz! </h3>
+
+</body>
