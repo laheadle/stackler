@@ -182,7 +182,7 @@ $(function() {
     var finalStack = stringify(generated.finalStack);
     $('#seq').text(seq)
     $('#finalStack').text(finalStack);
-    $('#show').click(function() { 
+    $('#show').one("click", function() { 
         $('#finalStack').show()
         var secs = Math.round((new Date() - started) / 100) / 10
         showMedian(secs)
