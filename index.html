@@ -26,8 +26,14 @@
 <p> What is the stack result of the following sequence of Forth words? </p>
 <p id="seq" class="code"></p>
 <button id="show" style="background-color: #e7e7e7">Show Stack Result</button>
-<p id="fin" style="display:none"></p>
-<p id="timing" style="display:none">(Elapsed time: <span id="secs"></span> seconds)</p>
+<p id="finalStack" style="display:none"></p>
+<div id="timing" style="display:none">
+  <p> Elapsed time: <span id="secs"></span> seconds. </p>
+  <p style="display:hidden" id="recentSummary">
+    Median of last <span id="numRecents"></span> times: 
+    <span id="medianValue"></span> seconds.
+  </p>
+</div>
 
 <h3> Reload the page for another quiz! </h3>
 <script>

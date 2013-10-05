@@ -130,6 +130,42 @@ function generateSequence(maxStack, numOps) {
     return { sequenceOfMoves: moves, finalStack: st }
 }
 
+// http://caseyjustus.com/finding-the-median-of-an-array-with-javascript
+function median(values) {
+    values.sort( function(a,b) {return a - b;} );
+    var half = Math.floor(values.length/2);
+    if(values.length % 2)
+        return values[half];
+    else
+        return (values[half-1] + values[half]) / 2.0;
+}
+
+function getRecents() {
+    if(typeof(Storage)==="undefined") return null
+    var str = localStorage.recents
+    if (str === undefined) return []
+    return JSON.parse(str)
+}
+
+function saveRecents(recents) {
+    localStorage.recents = JSON.stringify(recents)
+}
+
+var maxHistory = 5
+
+function showMedian(secs) {
+    var recents = getRecents()
+    if (recents === null) return
+    if (recents.length === maxHistory) {
+        recents = recents.splice(1)
+    }
+    recents[recents.length] = secs
+    $('#recentSummary').show()
+    $('#numRecents').text(recents.length)
+    $('#medianValue').text(median(recents))
+    saveRecents(recents)
+}
+
 $(function() {
     function stringify(arr) {
         return _.reduce(arr, function(a,b){return String(a)+' '+String(b)}, '')
@@ -138,12 +174,14 @@ $(function() {
     var started = new Date();
     var generated = generateSequence(4, 8 + rand(7))
     var seq = stringify(generated.sequenceOfMoves);
-    var fin = stringify(generated.finalStack);
+    var finalStack = stringify(generated.finalStack);
     $('#seq').text(seq)
-    $('#fin').text(fin);
+    $('#finalStack').text(finalStack);
     $('#show').click(function() { 
-        $('#fin').show()
-        $('#secs').text(Math.round((new Date() - started) / 100) / 10)
+        $('#finalStack').show()
+        var secs = Math.round((new Date() - started) / 100) / 10
+        showMedian(secs)
+        $('#secs').text(secs)
         $('#timing').show()
     });
 
